@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rector Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Rector Dashboard</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'rector_logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Allotment Status</h2>
+            
+            <!-- List of all students and their room allotment status -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Category</th>
+                        <th>CET Percentile</th>
+                        <th>Allotted Room</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.get_category_display }}</td>
+                            <td>{{ student.cet_percentile }}</td>
+                            <td>
+                                {% if student.allotment_set.exists %}
+                                {{student.allotment_set.first.room.building}} / {{student.allotment_set.first.room.block}} / {{ student.allotment_set.first.room.room_number }}
+                                {% else %}
+                                    Waiting
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Automatic Room Allotment</h2>
+
+            <!-- Trigger automatic room allotment -->
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="automatic_allot" value="true">Run Automatic Allotment</button>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>

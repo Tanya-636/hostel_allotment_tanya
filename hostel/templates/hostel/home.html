@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}  <!-- Load the static tag library -->
+    <link rel="stylesheet" type="text/css" href="{% static 'hostel/css/styles.css' %}"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="navbar">
+        <h1>VJTI Hostel Room Allotment</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'student_signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'student_login' %}">Login</a></li>
+                <li><a href="{% url 'rector_login' %}">Rector Login</a></li>
+                <li><a href="{% url 'faculty_login' %}">Faculty Login</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="form-container">
+        <h2>Welcome to the Hostel Room Allotment System</h2>
+        <p>We aim to facilitate smooth room allotments for students based on their MAH MCA CET scores and other criteria.</p>
+        <p><a class="button" href="{% url 'student_signup' %}">Sign Up</a></p>
+        <p><a class="button" href="{% url 'student_login' %}">Login</a></p>
+    </div>
+    <footer>
+        <p>&copy; 2024 VJTI Hostel All Rights Reserved.</p>
+        <p><a href="#">Contact Us</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- hostel/templates/hostel/student_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Include your CSS file if needed -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Dashboard, {{ student.name }}!</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'student_view' %}">View Rooms</a></li>
+            <li><a href="{% url 'student_logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Your Details</h2>
+        <p>Registration ID: {{ student.registration_id }}</p>
+        <p>Category: {{ student.category }}</p>
+        <p>CET Percentile: {{ student.cet_percentile }}</p>
+
+        <h2>Your Allotted Room</h2>
+        {% if allotment %}
+            <p>Room Number: {{ allotment.room.room_number }}</p>
+            <p>Room ID: {{ allotment.room.id }}</p> <!-- Assuming room model has an ID -->
+        {% else %}
+            <p>You have not been allotted a room yet.</p>
+        {% endif %}
+    </section>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student View</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Adjust the path as needed -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Dashboard</h1>
+        <h2>Welcome, {{ student.name }}!</h2>
+        <p><strong>Registration ID:</strong> {{ student.registration_id }}</p>
+        <p><strong>Category:</strong> {{ student.category }}</p>
+        <p><strong>CET Percentile:</strong> {{ student.cet_percentile }}</p>
+
+        <div>
+            <a href="{% url 'student_dashboard' %}" class="button">Go to Dashboard</a>
+            <a href="{% url 'student_logout' %}" class="button">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
